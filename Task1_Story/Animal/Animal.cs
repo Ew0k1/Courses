@@ -2,7 +2,7 @@
 
 namespace Task1_Story
 {
-    abstract class Animal
+    abstract class Animal:IButtleRoar
     {
         protected string name;
 
