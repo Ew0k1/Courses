@@ -6,13 +6,15 @@ namespace Task1_Story
 {
     class StoryController
     {
-        private const int delay = 500;
-        public static Random random = new Random();
+        delegate void StoryHandler(string message);
+        private const int delay = 0;
+        private Random random = new Random();
+        
 
         bool flag = true;
 
         List<Animal> animals;
-        House house;
+        public House house;
 
         public StoryController(List<Animal> _animals)
         {
@@ -27,6 +29,7 @@ namespace Task1_Story
 
         public void TellTheBeginning()
         {
+            
             try
             {
                 if (animals[0].GetType() == typeof(Dinosaur))
@@ -43,9 +46,13 @@ namespace Task1_Story
                 Thread.Sleep(delay);
                 animals[0].GiveButtleRoar();
                 Thread.Sleep(delay);
-                house = animals[0].BuildHouse(random.Next(30, 150));
+                house = animals[0].BuildHouse(random.Next(30, 100));
+                house.Changed += DisplayBlueMessage;
+                house.Built += DisplayBlueMessage;
+                house.Ended += Congratulations;
                 house.AddAnimal(animals[0]);
                 Thread.Sleep(delay);
+               
 
             }
             catch (AnimalException ex)
@@ -61,6 +68,7 @@ namespace Task1_Story
 
         public void TellTheMainPart()
         {
+            
             try
             {
                 foreach (var animal in animals)
@@ -93,6 +101,26 @@ namespace Task1_Story
                     animal.ConfirmInvite();
                     house.AddAnimal(animal);
                     Thread.Sleep(delay);
+
+                    if (IsMiracleHappened())
+                    {
+                        animals[0].ChangeHouseCapacity();
+                        house.ChangeCapacity(100);
+                    }
+                    if (IsMiracleHappened())
+                    {
+                        StarFall("Упала звезда!", delegate(string mes)
+                        {
+                            int rnd = random.Next(5);
+                            for (int i = 0; i < rnd; i++)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.WriteLine(mes);
+                                Console.ResetColor();
+                            }
+                        });
+                    }
+                    NextDay();
                 }
 
             }
@@ -119,7 +147,7 @@ namespace Task1_Story
 
         private bool IsMiracleHappened()
         {
-            if (random.Next(0, 2) == 1)
+            if (random.Next(0, 10) == 1)
             {
                 return true;
             }
@@ -136,8 +164,110 @@ namespace Task1_Story
                 list[i] = tmp;
             }
         }
+        private static void DisplayBlueMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(message);
+            // Сбрасываем настройки цвета
+            Console.ResetColor();
+        }
 
+        private static void Congratulations(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            #region
+            Console.Beep(659, 120);
+            Thread.Sleep(130);
+            Console.Beep(622, 120);
+            Thread.Sleep(130);
+
+            Console.Beep(659, 120);
+            Thread.Sleep(130);
+            Console.Beep(622, 120);
+            Thread.Sleep(130);
+            Console.Beep(659, 120);
+            Thread.Sleep(130);
+            Console.Beep(494, 120);
+            Thread.Sleep(130);
+            Console.Beep(587, 120);
+            Thread.Sleep(130);
+            Console.Beep(523, 120);
+            Thread.Sleep(130);
+
+            Console.Beep(440, 120);
+            Thread.Sleep(150);
+            Console.Beep(262, 120);
+            Thread.Sleep(130);
+            Console.Beep(330, 120);
+            Thread.Sleep(130);
+            Console.Beep(440, 120);
+            Thread.Sleep(130);
+
+            Console.Beep(494, 120);
+            Thread.Sleep(150);
+            Console.Beep(330, 120);
+            Thread.Sleep(130);
+            Console.Beep(415, 120);
+            Thread.Sleep(130);
+            Console.Beep(494, 120);
+            Thread.Sleep(130);
+
+            Console.Beep(523, 120);
+            Thread.Sleep(150);
+            Console.Beep(330, 120);
+            Thread.Sleep(130);
+            Console.Beep(659, 120);
+            Thread.Sleep(130);
+            Console.Beep(622, 120);
+            Thread.Sleep(130);
+
+            Console.Beep(659, 120);
+            Thread.Sleep(130);
+            Console.Beep(622, 120);
+            Thread.Sleep(130);
+            Console.Beep(659, 120);
+            Thread.Sleep(130);
+            Console.Beep(494, 120);
+            Thread.Sleep(130);
+            Console.Beep(587, 120);
+            Thread.Sleep(130);
+            Console.Beep(523, 120);
+            Thread.Sleep(130);
+
+            Console.Beep(440, 120);
+            Thread.Sleep(150);
+            Console.Beep(262, 120);
+            Thread.Sleep(130);
+            Console.Beep(330, 120);
+            Thread.Sleep(130);
+            Console.Beep(440, 120);
+            Thread.Sleep(130);
+
+            Console.Beep(494, 120);
+            Thread.Sleep(150);
+            Console.Beep(330, 120);
+            Thread.Sleep(130);
+            Console.Beep(523, 120);
+            Thread.Sleep(130);
+            Console.Beep(494, 120);
+            Thread.Sleep(150);
+            Console.Beep(440, 120);
+            #endregion
+        }
+
+        private static void NextDay() => Console.WriteLine("Наступил следующий день!");
+        private static void StarFall(string message, StoryHandler handler)
+        {
+            Console.WriteLine("Начался звездопад");
+            handler(message);
+        }
         
+
+
+
+
 
 
 

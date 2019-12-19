@@ -4,17 +4,25 @@ using System.Threading;
 
 namespace Task1_Story
 {
+    delegate void HouseHandler(string message);
     class House
     {
         private const int delay = 500;
         private int houseCapacity;
         private int roomersSize;
+        public event HouseHandler Changed;
+        public event HouseHandler Built;
+        public event HouseHandler Ended;
         public List<Animal> roomers { get; set; } = new List<Animal>();
         public House(int _size)
         {
             houseCapacity = _size;
         }
 
+        public int GetHouseCapacity()
+        {
+            return houseCapacity;
+        }
         public void AddAnimal(Animal _animal)
         {
             if((roomersSize + _animal.GetSize())>=houseCapacity)
@@ -57,20 +65,28 @@ namespace Task1_Story
         }
 
         public void BuildNewHouse()
-        {
+        { 
             Console.WriteLine("Подумали звери да и решили новый дом построить.");
             Thread.Sleep(delay);
             Console.WriteLine("Стали они брёвна таскать, доски пилить, гвозди забивать.");
             Thread.Sleep(delay);
             Console.WriteLine("Хороший теремок получился: большой, красивый, куда лучше прежнего.");
             Thread.Sleep(delay);
-            Console.WriteLine("Всем в нём места хватило.");
             houseCapacity += 50;
+            Built?.Invoke($"Теремок стал размером в {houseCapacity} единиц");
+            Console.WriteLine("Всем в нём места хватило.");
+        }
+
+        public void ChangeCapacity(int _capacity )
+        {
+            houseCapacity += _capacity;
+            Changed?.Invoke($"Теремок увеличился на {_capacity} единиц");
         }
 
         public void HappyEnd()
         {
             Console.WriteLine("Большой теремок получился. Все звери поместились. И жили они вместе долго и счастливо!");
+            Ended?.Invoke("Ура, товарищи!!!");
         }
 
     }

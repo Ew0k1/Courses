@@ -6,10 +6,8 @@ namespace Task1_Story
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            
             Mouse mouse = new Mouse("Мыша", 2);
             Frog frog = new Frog("Лягушка", 3);
             Hedgehog hedgehog = new Hedgehog("Ёж", 5);
@@ -21,13 +19,11 @@ namespace Task1_Story
 
             StoryController story = new StoryController(animals);
 
-          
             story.TellTheBeginning();
 
             story.TellTheMainPart();
             
             Console.ReadLine();
-
             
         }
     }

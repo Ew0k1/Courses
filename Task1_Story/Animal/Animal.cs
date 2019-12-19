@@ -20,6 +20,10 @@ namespace Task1_Story
         {
             Console.WriteLine("Иди к нам жить!");
         }
+        public virtual void ChangeHouseCapacity()
+        {
+            Console.WriteLine("Давайте увеличим теремок!");
+        }
         public virtual void AskWhoLives()
         {
             Console.WriteLine("Терем-теремок! Кто в тереме живёт?");
