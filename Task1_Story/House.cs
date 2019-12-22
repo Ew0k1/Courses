@@ -25,7 +25,7 @@ namespace Task1_Story
         }
         public void AddAnimal(Animal _animal)
         {
-            if((roomersSize + _animal.GetSize())>=houseCapacity)
+            if((roomersSize + _animal.Size)>=houseCapacity)
             {
                 HouseOverflow(_animal);
                 DestroyHouse();
@@ -35,13 +35,13 @@ namespace Task1_Story
             else
             {
                 roomers.Add(_animal);
-                roomersSize += _animal.GetSize();
+                roomersSize += _animal.Size;
             }
-            if (roomers.Count == 6)
-            {
-                HappyEnd();
-                throw new HouseException("Сказочке конец");
-            }
+            //if (roomers.Count == 6)
+            //{
+            //    HappyEnd();
+            //    throw new HouseException("Сказочке конец");
+            //}
         }
 
         public void DestroyHouse()
@@ -51,13 +51,13 @@ namespace Task1_Story
 
         public void HouseOverflow(Animal _animal)
         {
-            Console.WriteLine($"Полез {_animal.GetName()} в теремок. Лез-лез в дверь - - никак влезть не может. Лез-лез в окно — никак влезть не может. ");
+            Console.WriteLine($"Полез {_animal.Name} в теремок. Лез-лез в дверь - - никак влезть не может. Лез-лез в окно — никак влезть не может. ");
             Thread.Sleep(delay);
-            Console.Write($"Влез {_animal.GetName()} на крышу. Затрещал теремок, закачался. Выскочили из него ");
+            Console.Write($"Влез {_animal.Name} на крышу. Затрещал теремок, закачался. Выскочили из него ");
            
             foreach (var item in roomers)
             {
-                Console.Write(item.GetName() + " ");
+                Console.Write(item.Name + " ");
             }
             Console.WriteLine();
             Thread.Sleep(delay);
@@ -72,7 +72,7 @@ namespace Task1_Story
             Thread.Sleep(delay);
             Console.WriteLine("Хороший теремок получился: большой, красивый, куда лучше прежнего.");
             Thread.Sleep(delay);
-            houseCapacity += 50;
+            houseCapacity += 200;
             Built?.Invoke($"Теремок стал размером в {houseCapacity} единиц");
             Console.WriteLine("Всем в нём места хватило.");
         }

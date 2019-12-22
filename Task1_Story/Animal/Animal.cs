@@ -4,15 +4,19 @@ namespace Task1_Story
 {
     abstract class Animal:IButtleRoar
     {
-        protected string name;
-
-        protected int size;
+        public string Name { get; set; }
+       
 
         public Animal(string _name, int _size)
         {
-            name = _name;
-            size = _size;
+            Name = _name;
+            Size = _size;
         }
+        public Animal() { }
+        public abstract string Kind { get; }
+        public abstract string Gender { get; }
+        public abstract int MaxSize { get; }
+        public abstract int Size { get; set; }
 
         public abstract void GiveButtleRoar(); // Приветствие
 
@@ -38,15 +42,11 @@ namespace Task1_Story
         }
         public virtual void ConfirmInvite()
         {
-            Console.WriteLine($"Прыгнул {name} в теремок.");
+            Console.WriteLine($"Прыгнул {Name} в теремок.");
         }
-        public int GetSize()
-        {
-            return size;
-        }
-        public string GetName()
-        {
-            return name;
-        }
+        
+       
+       
+        
     }
 }

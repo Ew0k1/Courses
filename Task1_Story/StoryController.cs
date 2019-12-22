@@ -36,13 +36,13 @@ namespace Task1_Story
                 {
                     throw new AnimalException("Оу май, вот это поворот! Случилось чудо! В лесу гуляет динозавр!");
                 }
-                Console.WriteLine($"Подумал {animals[0].GetName()}: \"Надоело мне в норке жить\"");
+                Console.WriteLine($"Подумал {animals[0].Kind} {animals[0].Name}: \"Надоело мне в норке жить\"");
                 Thread.Sleep(delay);
                 Console.WriteLine("Из веточек и щепок построил он себе домик.");
                 Thread.Sleep(delay);
                 Console.WriteLine("Красивый дом получился.Настоящий теремок.");
                 Thread.Sleep(delay);
-                Console.WriteLine($"Стал {animals[0].GetName()} в нём  жить.");
+                Console.WriteLine($"Стал {animals[0].Name} в нём  жить.");
                 Thread.Sleep(delay);
                 animals[0].GiveButtleRoar();
                 Thread.Sleep(delay);
@@ -68,7 +68,6 @@ namespace Task1_Story
 
         public void TellTheMainPart()
         {
-            
             try
             {
                 foreach (var animal in animals)
@@ -82,7 +81,7 @@ namespace Task1_Story
                     {
                         throw new AnimalException("Случилось чудо! В лесу гуляет динозавр!");
                     }
-                    Console.WriteLine($"Скачет мимо {animal.GetName()}. Остановилась и спрашивает:");
+                    Console.WriteLine($"Скачет мимо {animal.Name}. Остановилась и спрашивает:");
                     Thread.Sleep(delay);
                     animal.AskWhoLives();
                     Thread.Sleep(delay);
@@ -120,6 +119,11 @@ namespace Task1_Story
                             }
                         });
                     }
+                    if (animals[animals.Count-1] == animal)
+                    {
+                        house.HappyEnd();
+                        throw new HouseException("Сказочке конец");
+                    }
                     NextDay();
                 }
 
@@ -133,10 +137,10 @@ namespace Task1_Story
                 {
                     if (IsMiracleHappened())
                     {
-                        Console.WriteLine($"Динозавру попался {roomer.GetName()}. Когда динозавр его ел, то подавился и умер");
+                        Console.WriteLine($"Динозавру попался {roomer.Name}. Когда динозавр его ел, то подавился и умер");
                         break;
                     }
-                    Console.WriteLine($"Динозавру попался {roomer.GetName()}. Динозавр съел его");
+                    Console.WriteLine($"Динозавру попался {roomer.Name}. Динозавр съел его");
                 }
             }
             catch (HouseException ex)
@@ -178,86 +182,87 @@ namespace Task1_Story
             Console.WriteLine(message);
             Console.ResetColor();
             #region
-            Console.Beep(659, 120);
-            Thread.Sleep(130);
-            Console.Beep(622, 120);
-            Thread.Sleep(130);
+            //Console.Beep(659, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(622, 120);
+            //Thread.Sleep(130);
 
-            Console.Beep(659, 120);
-            Thread.Sleep(130);
-            Console.Beep(622, 120);
-            Thread.Sleep(130);
-            Console.Beep(659, 120);
-            Thread.Sleep(130);
-            Console.Beep(494, 120);
-            Thread.Sleep(130);
-            Console.Beep(587, 120);
-            Thread.Sleep(130);
-            Console.Beep(523, 120);
-            Thread.Sleep(130);
+            //Console.Beep(659, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(622, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(659, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(494, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(587, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(523, 120);
+            //Thread.Sleep(130);
 
-            Console.Beep(440, 120);
-            Thread.Sleep(150);
-            Console.Beep(262, 120);
-            Thread.Sleep(130);
-            Console.Beep(330, 120);
-            Thread.Sleep(130);
-            Console.Beep(440, 120);
-            Thread.Sleep(130);
+            //Console.Beep(440, 120);
+            //Thread.Sleep(150);
+            //Console.Beep(262, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(330, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(440, 120);
+            //Thread.Sleep(130);
 
-            Console.Beep(494, 120);
-            Thread.Sleep(150);
-            Console.Beep(330, 120);
-            Thread.Sleep(130);
-            Console.Beep(415, 120);
-            Thread.Sleep(130);
-            Console.Beep(494, 120);
-            Thread.Sleep(130);
+            //Console.Beep(494, 120);
+            //Thread.Sleep(150);
+            //Console.Beep(330, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(415, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(494, 120);
+            //Thread.Sleep(130);
 
-            Console.Beep(523, 120);
-            Thread.Sleep(150);
-            Console.Beep(330, 120);
-            Thread.Sleep(130);
-            Console.Beep(659, 120);
-            Thread.Sleep(130);
-            Console.Beep(622, 120);
-            Thread.Sleep(130);
+            //Console.Beep(523, 120);
+            //Thread.Sleep(150);
+            //Console.Beep(330, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(659, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(622, 120);
+            //Thread.Sleep(130);
 
-            Console.Beep(659, 120);
-            Thread.Sleep(130);
-            Console.Beep(622, 120);
-            Thread.Sleep(130);
-            Console.Beep(659, 120);
-            Thread.Sleep(130);
-            Console.Beep(494, 120);
-            Thread.Sleep(130);
-            Console.Beep(587, 120);
-            Thread.Sleep(130);
-            Console.Beep(523, 120);
-            Thread.Sleep(130);
+            //Console.Beep(659, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(622, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(659, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(494, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(587, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(523, 120);
+            //Thread.Sleep(130);
 
-            Console.Beep(440, 120);
-            Thread.Sleep(150);
-            Console.Beep(262, 120);
-            Thread.Sleep(130);
-            Console.Beep(330, 120);
-            Thread.Sleep(130);
-            Console.Beep(440, 120);
-            Thread.Sleep(130);
+            //Console.Beep(440, 120);
+            //Thread.Sleep(150);
+            //Console.Beep(262, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(330, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(440, 120);
+            //Thread.Sleep(130);
 
-            Console.Beep(494, 120);
-            Thread.Sleep(150);
-            Console.Beep(330, 120);
-            Thread.Sleep(130);
-            Console.Beep(523, 120);
-            Thread.Sleep(130);
-            Console.Beep(494, 120);
-            Thread.Sleep(150);
-            Console.Beep(440, 120);
+            //Console.Beep(494, 120);
+            //Thread.Sleep(150);
+            //Console.Beep(330, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(523, 120);
+            //Thread.Sleep(130);
+            //Console.Beep(494, 120);
+            //Thread.Sleep(150);
+            //Console.Beep(440, 120);
             #endregion
         }
 
         private static void NextDay() => Console.WriteLine("Наступил следующий день!");
+
         private static void StarFall(string message, StoryHandler handler)
         {
             Console.WriteLine("Начался звездопад");

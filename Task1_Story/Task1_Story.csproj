@@ -51,6 +51,7 @@
     <Compile Include="Animal\Fox.cs" />
     <Compile Include="Animal\Frog.cs" />
     <Compile Include="Animal\Hedgehog.cs" />
+    <Compile Include="Generator.cs" />
     <Compile Include="House.cs" />
     <Compile Include="IButtleRoar.cs" />
     <Compile Include="Animal\Mouse.cs" />
